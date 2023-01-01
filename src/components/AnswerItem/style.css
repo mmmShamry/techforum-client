@@ -1,0 +1,18 @@
+.answerData {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.aCard {
+    width: 70%;
+    border: 1px solid black;
+}
+
+.answerDataText{
+    font-weight: 700 !important;
+}
+
+.questionTitle{
+    color: black;
+}

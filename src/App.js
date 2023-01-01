@@ -1,24 +1,30 @@
-import logo from './logo.svg';
-import './App.css';
+import { Route, Routes } from "react-router-dom";
+import Questions from "./views/Questions";
+import Tags from "./views/Tags";
+import Users from "./views/Users";
+import Login from "./views/Login";
+import SignUp from "./views/Signup";
+import PrivateRoutes from "./components/PrivateRoutes";
+import AskQuestion from "./views/Questions/AskQuestion";
+import Question from "./views/Questions/SingleQuestion";
+
 
 function App() {
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <Routes>
+        <Route element={<PrivateRoutes/>}>
+          <Route path="/questions" element={<Questions />} />
+          <Route path="/tags" element={<Tags />} />
+          <Route path="/users" element={<Users />} />
+          <Route path="/questions/ask" element={<AskQuestion/>} />
+          <Route path="/questions/:id" element={<Question/>}/>
+        </Route>
+        <Route path="/login" element={<Login />} />
+        <Route path="/signUp" element={<SignUp/>} />
+      </Routes>
+    </>
   );
 }
 
