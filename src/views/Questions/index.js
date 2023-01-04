@@ -9,7 +9,7 @@ const Questions = () => {
   const [questions, setQuestions] = useState([]);
 
   const getQuestions = async () => {
-    const response = await axios.get('http://localhost/techforum/index.php/api/question_controller');
+    const response = await axios.get('question_controller');
     setQuestions(response.data.data)
   }
 

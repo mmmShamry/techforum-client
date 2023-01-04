@@ -1,0 +1,14 @@
+.tagItem {
+    height: 150px;
+    width: 150px;
+    background-color: rgb(211, 211, 211);
+    float: left;
+    margin-right: 13px;
+    margin-bottom: 21px;
+    padding: 10px;
+    text-overflow: ellipsis;
+}
+
+.tag{
+    font-weight: 700 !important;
+}

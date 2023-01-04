@@ -1,0 +1,2 @@
+export const getUserName = (user) => (user && user.FirstName && user.LastName ?  `${user.FirstName} ${user.LastName}` : null);
+export const getUserEmail = (user) => (user && user.Email ? user.Email : null);

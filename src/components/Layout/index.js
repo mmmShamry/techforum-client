@@ -8,7 +8,7 @@ const Layout = ({children}) => {
   return (
     <React.Fragment>
       <Header />
-      <Box sx={{ display: "flex" }}>
+      <Box sx={{ display: "flex" , marginLeft : '10%', marginRight:'20%'}}>
         <Navigation />
         <Box p={2} className = 'content'>{children}</Box>
       </Box>

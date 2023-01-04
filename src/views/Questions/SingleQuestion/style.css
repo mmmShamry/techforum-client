@@ -4,19 +4,11 @@
     justify-content: space-between;
 }
 
-.qCard {
-    border: 1px solid black;
-}
-
 .questionDataText{
     font-weight: 700 !important;
 }
 
-.questionTitle{
-    color: black;
-}
-
-.questionTitle:hover{
-    cursor: pointer;
-    color: #1976d2;
+.answerContainer {
+    height: 250px;
+    overflow-y: auto;
 }

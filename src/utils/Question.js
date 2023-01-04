@@ -7,3 +7,5 @@ export const getQuestionTitle = (question) => (question && question.Title ? ques
 export const getQuestionOwner = (question) => (question && question.FirstName && question.LastName ? `${question.FirstName} ${question.LastName}` : null);
 
 export const getTotalAnswers = (question) => (question && question.totalAnswers ? question.totalAnswers : 0);
+
+export const getQuestionCreatedDate = (question) => (question && question.CreatedDate ? question.CreatedDate : null)
