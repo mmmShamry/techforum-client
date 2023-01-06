@@ -5,6 +5,7 @@ import Users from "./views/Users";
 import Login from "./views/Login";
 import SignUp from "./views/Signup";
 import PrivateRoutes from "./components/PrivateRoutes";
+import LogginRoute from "./components/LogginRoute";
 import AskQuestion from "./views/Questions/AskQuestion";
 import Question from "./views/Questions/SingleQuestion";
 
@@ -21,7 +22,9 @@ function App() {
           <Route path="/questions/ask" element={<AskQuestion/>} />
           <Route path="/questions/:id" element={<Question/>}/>
         </Route>
-        <Route path="/login" element={<Login />} />
+        <Route element={<LogginRoute/>}>
+          <Route path="/login" element={<Login />} />
+        </Route>
         <Route path="/signUp" element={<SignUp/>} />
       </Routes>
     </>

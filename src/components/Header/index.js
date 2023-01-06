@@ -6,8 +6,24 @@ import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import { Button } from '@mui/material';
 import { Link } from "react-router-dom";
+import { getActiveUserName, removeTokens } from '../../utils/User';
+import axios from 'axios';
 
-const Header = ({user}) => {
+
+const Header = () => {
+  const activeUser = getActiveUserName()
+
+  const logOutUser = async ()=>{
+    const response = await axios.get('user_controller/logOut')
+  }
+
+  const handleLogOut = (e) =>{
+    e.preventDefault();
+    logOutUser()
+    removeTokens();
+    setTimeout(() => window.location.replace('/login'), 1500);
+  }
+
   return (
     <Box sx={{ flexGrow: 1 }}>
         <AppBar position="static">
@@ -19,9 +35,9 @@ const Header = ({user}) => {
                 </Link>
             </Box>
             <Typography>
-                test user
+                {activeUser}
             </Typography>
-            <Button sx={{height:'40px', ml : 2}} variant='contained' color="error">Log Out</Button>
+            <Button sx={{height:'40px', ml : 2}} variant='contained' color="error" onClick={handleLogOut}>Log Out</Button>
         </Toolbar>
         </AppBar>
     </Box>

@@ -1,10 +1,14 @@
 import React from 'react'
 import {Navigate, Outlet } from 'react-router-dom'
+import { getActiveUserId, getActiveUserToken } from '../../utils/User'
+
 
 const PrivateRoutes = () => {
-  let auth = {token : true}
+  const token = getActiveUserToken();
+  const id = getActiveUserId()
+
     return (
-    auth.token ? <Outlet/> : <Navigate to="/login" />
+    token && id ? <Outlet/> : <Navigate to="/login" />
   )
 }
 
