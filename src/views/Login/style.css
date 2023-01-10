@@ -1,0 +1,11 @@
+.signUpLink {
+    color: black !important;
+    cursor: pointer !important;
+    font-size: 13px !important;
+    font-weight: 500 !important;
+}
+
+.signUpLink:hover{
+    text-decoration: underline !important;
+    color: #4343e7 !important;
+}

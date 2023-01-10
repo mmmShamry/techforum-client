@@ -5,6 +5,10 @@ import Box  from '@mui/material/Box'
 import Grid  from '@mui/material/Grid'
 import Typography  from '@mui/material/Typography'
 import logo from '../../assets/logo/logoinvert.png'
+import axios from 'axios'
+import Alert from "@mui/material/Alert";
+import Snackbar from "@mui/material/Snackbar";
+import { setTokens } from '../../utils/User'
 
 const SignUp = () => {
 
@@ -13,29 +17,67 @@ const SignUp = () => {
     const [firstName, setFirstName] = useState('');
     const [lastName, setLastName] = useState('');
     const [rePw, setRePw] = useState("");
+    const [user, setUser] = useState(null);
+    const [error, setError] = useState(false);
+    const [errorMessage, setErrorMessage] = useState("");
+    const [unMatchingPw, setUnMatchingPw] = useState(false);
+
+    const signUpUser = async () => {
+      if(pw === rePw){
+        setUnMatchingPw(false)
+        let formBody = new FormData();
+        formBody.append("email", email);
+        formBody.append("password", pw);
+        formBody.append("firstName", firstName);
+        formBody.append("lastName", lastName)
+
+        await axios({
+          method : "post",
+          url:"user_controller/signUp",
+          data:formBody,
+          headers: { "Content-Type": "multipart/form-data" },
+        })
+        .then((response) => {
+          setError(false);
+            persistUser(response.data.data);
+        })
+        .catch((err) => {
+          setError(true);
+          setErrorMessage(err.response.data.message)
+        });
+
+      }else{
+        setUnMatchingPw(true)
+      }
+        
+    }
+
+    const persistUser = (user) => {
+      setTokens(user?.id, user?.token, user?.firstName, user?.lastName);
+      setUser(user);
+    };
 
     const handleSubmit =(event) =>{
         event.preventDefault();
 
-        const user = {
-            firstName : firstName,
-            lastName : lastName,
-            email : email,
-            password : pw
+        signUpUser()
+
+        if(!error && user){
+          setTimeout(() => window.location.replace("/questions"), 1000);
         }
-
-        console.log(user)
-
-        setEmail("")
-        setPw("")
-        setFirstName("")
-        setLastName("")
-        setRePw("")
         
     }
 
 
   return (
+    <>
+    {error ? (
+        <Snackbar open={error} autoHideDuration={2000}>
+          <Alert severity="error" sx={{ width: "100%" }}>
+            {errorMessage}
+          </Alert>
+        </Snackbar>
+      ) : null}
     <Grid
       container
       spacing={0}
@@ -87,17 +129,6 @@ const SignUp = () => {
             />
           </Box>
           <Box mb={2}>
-            <TextField
-              label="Re Enter Password"
-              type="password"
-              variant="outlined"
-              required
-              fullWidth
-              value={rePw}
-              onChange={(e) => setRePw(e.target.value)}
-            />
-          </Box>
-          <Box mb={2}>
           <TextField
             label="Password"
             type="password"
@@ -107,6 +138,19 @@ const SignUp = () => {
             value={pw}
             onChange={(e) => setPw(e.target.value)}
           />
+          </Box>
+          <Box mb={2}>
+            <TextField
+              error={unMatchingPw}
+              helperText={unMatchingPw && "Please make sure your passwords match"}
+              label="Re-Enter Password"
+              type="password"
+              variant="outlined"
+              required
+              fullWidth
+              value={rePw}
+              onChange={(e) => setRePw(e.target.value)}
+            />
           </Box>
           <center>
             <Button type="submit" variant="contained" color="primary">
@@ -118,6 +162,7 @@ const SignUp = () => {
         </Box>
       </Grid>
     </Grid>
+    </>
   )
 }
 

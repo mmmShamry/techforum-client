@@ -5,11 +5,12 @@ import Box from "@mui/material/Box";
 import Grid from "@mui/material/Grid";
 import Alert from "@mui/material/Alert";
 import Snackbar from "@mui/material/Snackbar";
-import { Navigate } from "react-router-dom";
 import Typography from "@mui/material/Typography";
 import logo from "../../assets/logo/logoinvert.png";
 import axios from "axios";
 import { setTokens } from "../../utils/User";
+import { Link } from "react-router-dom"; 
+import './style.css'
 
 const Login = () => {
   const [pw, setPw] = useState("");
@@ -122,11 +123,19 @@ const Login = () => {
                   color="primary"
                   onClick={handleSubmit}
                 >
-                  Login
+                  Sign In
                 </Button>
               </center>
             </form>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <Link style={{textDecoration: 'none'}}  to="/signUp">
+              <Typography className="signUpLink">Sign Up for TechForum</Typography>
+            </Link>
           </Box>
+          
         </Grid>
       </Grid>
     </>
