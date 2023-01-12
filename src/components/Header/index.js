@@ -8,6 +8,7 @@ import { Button } from '@mui/material';
 import { Link } from "react-router-dom";
 import { getActiveUserName, removeTokens } from '../../utils/User';
 import axios from 'axios';
+import './style.css'
 
 
 const Header = () => {
@@ -34,9 +35,11 @@ const Header = () => {
                   <Button sx={{height:'40px'}} variant='contained'>Ask question</Button>
                 </Link>
             </Box>
-            <Typography>
+            <Link style={{textDecoration: 'none'}} to="/self">
+            <Typography className='HeaderName'>
                 {activeUser}
             </Typography>
+            </Link>
             <Button sx={{height:'40px', ml : 2}} variant='contained' color="error" onClick={handleLogOut}>Log Out</Button>
         </Toolbar>
         </AppBar>

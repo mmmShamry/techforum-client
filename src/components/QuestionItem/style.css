@@ -2,6 +2,8 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
+    margin-bottom: 15px;
+    margin-top: 8px;
 }
 
 .qCard {
@@ -9,7 +11,7 @@
 }
 
 .questionDataText{
-    font-weight: 700 !important;
+    font-weight: 550 !important;
 }
 
 .questionTitle{
@@ -19,4 +21,10 @@
 .questionTitle:hover{
     cursor: pointer;
     color: #1976d2;
+}
+
+.deleteButton {
+    cursor: pointer;
+    color: #8a3737;
+    font-size: 20px;
 }

@@ -1,6 +1,6 @@
 export const getQuestionId = (question) => (question ? question.Id : null);
 
-export const getQuestionBody = (question) => (question ? question.Question : null);
+export const getQuestionBody = (question) => (question ? question.Question || question.Body : null);
 
 export const getQuestionTitle = (question) => (question && question.Title ? question.Title : "Question");
 

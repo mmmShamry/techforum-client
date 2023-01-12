@@ -3,7 +3,7 @@ import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import Typography from "@mui/material/Typography";
 import Box from "@mui/system/Box";
-import Divider from "@mui/material/Divider";
+// import Divider from "@mui/material/Divider";
 import { Link } from "react-router-dom";
 import {
   getQuestionId,
@@ -15,7 +15,7 @@ import {
 } from "../../utils/Question";
 import "./style.css";
 
-const QuestionItem = ({ question, showData = false }) => {
+const QuestionItem = ({ question, showData = false , onDelete, enableDelete = false}) => {
   const questionId = getQuestionId(question);
   const questionBody = getQuestionBody(question);
   const questionTitle = getQuestionTitle(question);
@@ -25,22 +25,30 @@ const QuestionItem = ({ question, showData = false }) => {
 
   const questionUrl = `/questions/${questionId}`;
 
+  const handleDelete = (id) => (onDelete(id))
+
   return (
     <>
       {showData ? (
         <>
-          <Box key={questionId}>
+        <Box borderBottom='1px solid'>
+        <Box key={questionId}>
             <Typography variant="h5" gutterBottom>
               {questionTitle}
             </Typography>
-            <br />
+      
             <Typography varient="body1">{questionBody}</Typography>
           </Box>
           <Box className="questionData">
             <Typography className="questionDataText">{`On : ${questionDate}`}</Typography>
-            <Typography className="questionDataText">{`Asked by : ${questionOwner}`}</Typography>
+            {enableDelete ? (
+              <Typography className="deleteButton" onClick ={() =>handleDelete(questionId)}>Delete</Typography>
+            ) : (
+              <Typography className="questionDataText">{`Asked by : ${questionOwner}`}</Typography>
+            )}
           </Box>
-          <Divider variant="middle" />
+        </Box>
+          
         </>
       ) : (
         <Card key={questionId} className="qCard">

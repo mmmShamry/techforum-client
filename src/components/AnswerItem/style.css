@@ -10,9 +10,15 @@
 }
 
 .answerDataText{
-    font-weight: 700 !important;
+    font-weight: 550 !important;
 }
 
 .questionTitle{
     color: black;
+}
+
+.deleteButton {
+    cursor: pointer;
+    color: #8a3737;
+    font-size: 20px;
 }
