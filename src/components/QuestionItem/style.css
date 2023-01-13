@@ -2,7 +2,6 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    margin-bottom: 15px;
     margin-top: 8px;
 }
 
@@ -11,7 +10,7 @@
 }
 
 .questionDataText{
-    font-weight: 550 !important;
+    font-weight: 450 !important;
 }
 
 .questionTitle{

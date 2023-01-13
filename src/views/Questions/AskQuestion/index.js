@@ -3,19 +3,22 @@ import Layout from "../../../components/Layout";
 import Select from "react-select";
 import axios from "axios";
 import TextField from "@mui/material/TextField";
-import { Box } from "@mui/material";
-import {Editor, EditorState} from 'draft-js';
-import 'draft-js/dist/Draft.css';
+import { Box, Typography } from "@mui/material";
+import "draft-js/dist/Draft.css";
+import TextArea from "../../../components/TextArea";
+import Button from "@mui/material/Button";
+import { getActiveUserId } from "../../../utils/User";
+import "./style.css";
 
 const AskQuestion = () => {
   const [tags, setTags] = useState([]);
   const [tagOpetions, setTagOptions] = useState([]);
   const [selectedOpetions, setSelectedOptions] = useState([]);
-  const [title, setTitle] = useState('');
+  const [title, setTitle] = useState("");
+  const [questionBody, setQuestionBody] = useState("");
+  const [error, setError] = useState(false);
 
-  const [editorState, setEditorState] = React.useState(
-    () => EditorState.createEmpty(),
-  );
+  const userId = getActiveUserId();
 
   const getTags = async () => {
     const response = await axios.get("tag_controller");
@@ -34,13 +37,46 @@ const AskQuestion = () => {
   }, [tags]);
 
   const handleSelect = (data) => {
-    setSelectedOptions(data);
-    console.log(selectedOpetions);
+    const t = data;
+    setSelectedOptions(t);
+  };
+
+  const handleSubmit = async () => {
+    if (title === "" || questionBody === "" || tags.length === 0) {
+      setError(true);
+    } else {
+      setError(false);
+      let today = new Date().toISOString().slice(0, 10);
+      const t = selectedOpetions.map((a) => a.value.toLowerCase());
+
+      
+      const formData = new FormData();
+      
+      formData.append("title", title)
+      formData.append("body", questionBody)
+      formData.append("createdDate", today)
+      formData.append("userId", userId)
+      formData.append("tags", t.toString())
+
+      const resp = await axios.post('question_controller/addQuestion', formData)
+        if(resp){
+          setTitle('')
+          setQuestionBody('');
+          setSelectedOptions([]);
+
+          setTimeout(() => window.location.replace("/questions"), 1000);
+        }
+    }
   };
 
   return (
     <Layout>
-      <Box>
+      <Typography variant="h5">Ask a Question</Typography>
+      <br />
+      {error && (
+        <Typography className="error">All fields are Mandatory</Typography>
+      )}
+      <Box width={"60%"}>
         <Box mb={2}>
           <TextField
             label="Title"
@@ -49,6 +85,19 @@ const AskQuestion = () => {
             value={title}
             onChange={(e) => setTitle(e.target.value)}
             fullWidth
+          />
+        </Box>
+
+        <Box mb={2}>
+          <TextArea
+            value={questionBody}
+            placeholder="Question"
+            onChange={(e) => {
+              setQuestionBody(e.target.value);
+            }}
+            fullWidth
+            required
+            label="Question"
           />
         </Box>
 
@@ -63,9 +112,13 @@ const AskQuestion = () => {
           />
         </Box>
 
-        <Box mb={2}>
-          <Editor editorState={editorState} onChange={setEditorState} />;
-        </Box>
+        <Button
+          variant="contained"
+          color="primary"
+          onClick={() => handleSubmit()}
+        >
+          Submit
+        </Button>
       </Box>
     </Layout>
   );

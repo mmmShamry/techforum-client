@@ -9,6 +9,7 @@ import LogginRoute from "./components/LogginRoute";
 import AskQuestion from "./views/Questions/AskQuestion";
 import Question from "./views/Questions/SingleQuestion";
 import Self from "./views/Users/Self";
+import Home from "./views/Home";
 
 
 function App() {
@@ -27,6 +28,7 @@ function App() {
         <Route element={<LogginRoute/>}>
           <Route path="/login" element={<Login />} />
           <Route path="/signUp" element={<SignUp/>} />
+          <Route path="/" element={<Home/>}/>
         </Route>
       </Routes>
     </>

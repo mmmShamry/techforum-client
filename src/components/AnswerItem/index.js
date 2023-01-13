@@ -27,6 +27,7 @@ const AnswerItem = ({ answer, onDelete, enableDelete = false }) => {
     <Card key={answerId} className="aCard">
       <CardContent>
         <Typography varient="body1">{answerBody}</Typography>
+        <br/>
         <Box className="answerData">
           <Typography className="answerDataText">{`On : ${date}`}</Typography>
           {enableDelete ? (

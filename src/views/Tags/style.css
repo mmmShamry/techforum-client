@@ -3,3 +3,9 @@
     width: 100px;
     background-color: aqua;
 }
+
+.tagHead {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
