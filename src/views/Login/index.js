@@ -9,7 +9,7 @@ import Typography from "@mui/material/Typography";
 import logo from "../../assets/logo/logoinvert.png";
 import axios from "axios";
 import { setTokens } from "../../utils/User";
-import { Link } from "react-router-dom"; 
+import { useNavigate } from "react-router-dom"; 
 import './style.css'
 
 const Login = () => {
@@ -17,6 +17,8 @@ const Login = () => {
   const [email, setEmail] = useState("");
   const [user, setUser] = useState(null);
   const [error, setError] = useState(false);
+
+  const navigate = useNavigate()
 
   const loginUser = async () => {
     let formBody = new FormData();
@@ -54,7 +56,7 @@ const Login = () => {
     loginUser();
     
     if(!error){
-      setTimeout(() => window.location.replace("/questions"), 1000);
+      setTimeout(() => navigate('/questions'), 1000);
     }
     
   };

@@ -52,6 +52,12 @@ const Tags = () => {
     
   }
 
+  const handleClose = () =>{
+    setTagName('');
+    setTagDescription('')
+    setOpen(false)
+  }
+
   useEffect(()=>{
     getTags();
   },[])
@@ -98,6 +104,7 @@ const Tags = () => {
             
           </DialogContent>
           <DialogActions>
+              <Button variant='contained' color="error" onClick={()=>handleClose()}>Cancel</Button>
               <Button variant="contained" color="primary" onClick={()=>handleSubmit()}>Submit</Button>
           </DialogActions>
         </Dialog>

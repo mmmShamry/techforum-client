@@ -5,7 +5,7 @@ import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import { Button } from '@mui/material';
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { getActiveUserName, removeTokens } from '../../utils/User';
 import axios from 'axios';
 import './style.css'
@@ -13,6 +13,7 @@ import './style.css'
 
 const Header = () => {
   const activeUser = getActiveUserName()
+  const navigate = useNavigate();
 
   const logOutUser = async ()=>{
     const response = await axios.get('user_controller/logOut')
@@ -22,7 +23,7 @@ const Header = () => {
     e.preventDefault();
     logOutUser()
     removeTokens();
-    setTimeout(() => window.location.replace('/login'), 1500);
+    setTimeout(() => navigate('/login'), 1500);
   }
 
   return (
