@@ -22,7 +22,7 @@ const Self = () => {
   const userName = getActiveUserName();
 
   const deleteQuestion = async (id) => {
-    const response = await axios.delete(`question_controller?Id=${id}`)
+    const response = await axios.delete(`question_controller/deleteQuestion?Id=${id}`)
     if(response.status === 202){
         setQuestions(questions.filter((q)=> q.Id !== id))
     }

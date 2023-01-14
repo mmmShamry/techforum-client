@@ -8,6 +8,7 @@ import "draft-js/dist/Draft.css";
 import TextArea from "../../../components/TextArea";
 import Button from "@mui/material/Button";
 import { getActiveUserId } from "../../../utils/User";
+import { useNavigate } from "react-router-dom";
 import "./style.css";
 
 const AskQuestion = () => {
@@ -19,6 +20,7 @@ const AskQuestion = () => {
   const [error, setError] = useState(false);
 
   const userId = getActiveUserId();
+  const navigate = useNavigate();
 
   const getTags = async () => {
     const response = await axios.get("tag_controller/getAllTags");
@@ -64,7 +66,7 @@ const AskQuestion = () => {
           setQuestionBody('');
           setSelectedOptions([]);
 
-          setTimeout(() => window.location.replace("/questions"), 1000);
+          setTimeout(() => navigate("/questions"), 1000);
         }
     }
   };

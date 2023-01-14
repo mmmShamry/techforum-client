@@ -9,6 +9,7 @@ import axios from 'axios'
 import Alert from "@mui/material/Alert";
 import Snackbar from "@mui/material/Snackbar";
 import { setTokens } from '../../utils/User'
+import { useNavigate } from 'react-router-dom'
 
 const SignUp = () => {
 
@@ -21,6 +22,8 @@ const SignUp = () => {
     const [error, setError] = useState(false);
     const [errorMessage, setErrorMessage] = useState("");
     const [unMatchingPw, setUnMatchingPw] = useState(false);
+
+    const navigate = useNavigate()
 
     const signUpUser = async () => {
       if(pw === rePw){
@@ -63,7 +66,7 @@ const SignUp = () => {
         signUpUser()
 
         if(!error && user){
-          setTimeout(() => window.location.replace("/questions"), 1000);
+          setTimeout(() => navigate("/questions"), 1000);
         }
         
     }
