@@ -9,7 +9,7 @@ import Typography from "@mui/material/Typography";
 import logo from "../../assets/logo/logoinvert.png";
 import axios from "axios";
 import { setTokens } from "../../utils/User";
-import { useNavigate } from "react-router-dom"; 
+import { useNavigate, Link } from "react-router-dom"; 
 import './style.css'
 
 const Login = () => {
