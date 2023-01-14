@@ -1,12 +1,21 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Button, Divider } from "@mui/material";
 import Typography from "@mui/material/Typography";
 import Box from "@mui/material/Box";
 import { Link } from "react-router-dom";
 import Grid from "@mui/material/Grid";
 import logo from "../../assets/logo/logoinvert.png";
+import axios from "axios";
 
 const Home = () => {
+  const checkHealth = async () => {
+    const response = await axios.get("Health_controller/healthCheck");
+  };
+
+  useEffect(() => {
+    checkHealth();
+  }, []);
+
   return (
     <Grid
       container
@@ -40,7 +49,7 @@ const Home = () => {
 
             <Box p={3}>
               <center>
-                <Link style={{textDecoration: 'none'}}  to="/login">
+                <Link style={{ textDecoration: "none" }} to="/login">
                   <Button
                     variant="contained"
                     color="primary"
