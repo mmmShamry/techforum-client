@@ -42,7 +42,10 @@ const Login = () => {
       const response = await axios.post("user_controller/logIn", formBody)
 
       if(response.status===201){
+        setError(false)
         persistUser(response.data.data)
+      }else{
+        setError(true)
       }
   };
 
