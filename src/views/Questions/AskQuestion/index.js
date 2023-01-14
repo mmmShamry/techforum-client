@@ -21,7 +21,7 @@ const AskQuestion = () => {
   const userId = getActiveUserId();
 
   const getTags = async () => {
-    const response = await axios.get("tag_controller");
+    const response = await axios.get("tag_controller/getAllTags");
     setTags(response.data.data);
   };
 

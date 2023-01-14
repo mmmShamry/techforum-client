@@ -29,7 +29,7 @@ const Self = () => {
   }
 
   const deleteAnswer = async (id) => {
-    const response = await axios.delete(`answer_controller?Id=${id}`)
+    const response = await axios.delete(`answer_controller/deleteAnswer?Id=${id}`)
     if(response.status === 202){
         setAnswers(answers.filter((a)=> a.Id !== id))
     }
@@ -46,7 +46,6 @@ const Self = () => {
     const response = await axios.get(
       `answer_controller/getAnswerByUser?Id=${userId}`
     );
-    console.log(response);
     setAnswers(response.data.data);
   };
 

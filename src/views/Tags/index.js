@@ -20,7 +20,7 @@ const Tags = () => {
   const [errorMsg, setErrorMsg] = useState('')
 
   const getTags = async () => {
-    const response = await axios.get('tag_controller');
+    const response = await axios.get('tag_controller/getAllTags');
     setTags(response.data.data)
   }
 
@@ -36,7 +36,7 @@ const Tags = () => {
     }else{
       const formData = new FormData();
     
-       formData.append("name", tagName);
+       formData.append("name", tagName.toLowerCase());
        formData.append("description",tagDescription)
 
        const resp = await axios.post('tag_controller/addTag', formData);

@@ -9,7 +9,7 @@ const Questions = () => {
   const [questions, setQuestions] = useState([]);
 
   const getQuestions = async () => {
-    const response = await axios.get('question_controller');
+    const response = await axios.get('question_controller/getAllQuestions');
     setQuestions(response.data.data)
   }
 
