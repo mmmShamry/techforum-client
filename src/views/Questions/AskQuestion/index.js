@@ -4,7 +4,6 @@ import Select from "react-select";
 import axios from "axios";
 import TextField from "@mui/material/TextField";
 import { Box, Typography } from "@mui/material";
-import "draft-js/dist/Draft.css";
 import TextArea from "../../../components/TextArea";
 import Button from "@mui/material/Button";
 import { getActiveUserId } from "../../../utils/User";

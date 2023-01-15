@@ -13,9 +13,7 @@ import "./style.css";
 const Self = () => {
   const [questions, setQuestions] = useState([]);
   const [answers, setAnswers] = useState([]);
-  const [questionId, setQuestionId] = useState(0);
-  const [answerId, setAnswerId] = useState(0);
-
+  
   const [tabValue, setTabValue] = useState(0);
 
   const userId = getActiveUserId();

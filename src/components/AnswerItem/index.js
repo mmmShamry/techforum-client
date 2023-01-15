@@ -9,7 +9,6 @@ import {
   getAnswerDate,
   getAnswerId,
   getAnswerOwner,
- // getAnswerOwnerId,
 } from "../../utils/Answer";
 
 import './style.css'
@@ -18,7 +17,6 @@ const AnswerItem = ({ answer, onDelete, enableDelete = false }) => {
   const answerId = getAnswerId(answer);
   const answerBody = getAnswerBody(answer);
   const answerOwner = getAnswerOwner(answer);
-  // const userId = getAnswerOwnerId(answer);
   const date = getAnswerDate(answer);
   
   const handleDelete = (id) => (onDelete(id))

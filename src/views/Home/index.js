@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { Button, Divider } from "@mui/material";
+import { Button } from "@mui/material";
 import Typography from "@mui/material/Typography";
 import Box from "@mui/material/Box";
 import { Link } from "react-router-dom";

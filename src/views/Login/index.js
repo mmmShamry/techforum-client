@@ -25,20 +25,6 @@ const Login = () => {
     formBody.append("email", email);
     formBody.append("password", pw);
 
-    // await axios({
-    //   method: "post",
-    //   url: "user_controller/logIn",
-    //   data: formBody,
-    //   headers: { "Content-Type": "multipart/form-data" },
-    // })
-    //   .then((response) => {
-    //     setError(false);
-    //       persistUser(response.data.data);
-    //   })
-    //   .catch((err) => {
-    //     setError(true);
-    //   });
-
       const response = await axios.post("user_controller/logIn", formBody)
 
       if(response.status===201){

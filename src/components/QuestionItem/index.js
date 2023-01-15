@@ -3,7 +3,6 @@ import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import Typography from "@mui/material/Typography";
 import Box from "@mui/system/Box";
-// import Divider from "@mui/material/Divider";
 import { Link } from "react-router-dom";
 import {
   getQuestionId,

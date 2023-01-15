@@ -1,9 +1,3 @@
-// "Id": "2",
-// "Body": "test answer 2",
-// "CreatedDate": "2022-12-13",
-// "FirstName": "test",
-// "LastName": "user",
-// "UserId": "1"
 
 export const getAnswerId = (answer) => (answer ? answer.Id : null);
 
