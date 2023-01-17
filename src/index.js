@@ -8,7 +8,7 @@ import axios from 'axios';
 
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
-const apiBaseUrl =  'http://localhost/techforum/index.php/api' //'https://w1761398.users.ecs.westminster.ac.uk/ServerSide/techforum/index.php/api'
+const apiBaseUrl = 'https://w1761398.users.ecs.westminster.ac.uk/ServerSide/techforum/index.php/api' // 'http://localhost/techforum/index.php/api'
 
 axios.defaults.baseURL = `${apiBaseUrl}`;
 
