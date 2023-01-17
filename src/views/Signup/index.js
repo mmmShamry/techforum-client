@@ -43,6 +43,7 @@ const SignUp = () => {
         .then((response) => {
           setError(false);
             persistUser(response.data.data);
+            setTimeout(() => navigate("/questions"), 1000);
         })
         .catch((err) => {
           setError(true);
@@ -64,10 +65,6 @@ const SignUp = () => {
         event.preventDefault();
 
         signUpUser()
-
-        if(!error && user){
-          setTimeout(() => navigate("/questions"), 1000);
-        }
         
     }
 

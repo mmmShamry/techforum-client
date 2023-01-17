@@ -6,19 +6,13 @@ import reportWebVitals from './reportWebVitals';
 import { BrowserRouter } from 'react-router-dom';
 import axios from 'axios';
 
-import { getActiveUserToken } from './utils/User';
-import { setAuthHeaders } from './utils/Http';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
-const apiBaseUrl = 'https://w1761398.users.ecs.westminster.ac.uk/ServerSide/techforum/index.php/api' //'http://localhost/techforum/index.php/api'
+const apiBaseUrl =  'http://localhost/techforum/index.php/api' //'https://w1761398.users.ecs.westminster.ac.uk/ServerSide/techforum/index.php/api'
 
 axios.defaults.baseURL = `${apiBaseUrl}`;
 
-const accessToken = getActiveUserToken();
 
-if(accessToken){
-  setAuthHeaders({accessToken})
-}
 
 root.render(
   <React.StrictMode>

@@ -53,7 +53,7 @@ const Question = () => {
       formData.append("userId", userId);
       formData.append("questionId", id)
 
-      const resp = axios.post('answer_controller/addAnswer', formData);
+      const resp = axios.post(`answer_controller/addAnswer?uId=${userId}`, formData);
       if(resp){
         setMyAnswer('');
         setTimeout(() => getAnswers(), 2000);

@@ -17,6 +17,7 @@ const Login = () => {
   const [email, setEmail] = useState("");
   const [user, setUser] = useState(null);
   const [error, setError] = useState(false);
+  const [errMsg, setErrMsg] = useState("");
 
   const navigate = useNavigate()
 
@@ -25,14 +26,25 @@ const Login = () => {
     formBody.append("email", email);
     formBody.append("password", pw);
 
-      const response = await axios.post("user_controller/logIn", formBody)
+      // const response = await axios.post("user_controller/logIn", formBody)
 
-      if(response.status===201){
-        setError(false)
-        persistUser(response.data.data)
-      }else{
-        setError(true)
-      }
+      await axios({
+        method : "post",
+        url:"user_controller/logIn",
+        data:formBody,
+        headers: { "Content-Type": "multipart/form-data" },
+      })
+      .then((response) => {
+        setError(false);
+        persistUser(response.data.data);
+        setTimeout(() => navigate('/questions'), 1000);
+      })
+      .catch((err) => {
+        setError(true);
+        setErrMsg(err.response.data.message)
+        console.log(err.response.data.message)
+      });
+
   };
 
   const persistUser = (user) => {
@@ -43,11 +55,7 @@ const Login = () => {
   const handleSubmit = (event) => {
     event.preventDefault();
     loginUser();
-    
-    if(!error){
-      setTimeout(() => navigate('/questions'), 1000);
-    }
-    
+      
   };
 
   return (
@@ -55,7 +63,7 @@ const Login = () => {
       {error ? (
         <Snackbar open={error} autoHideDuration={2000}>
           <Alert severity="error" sx={{ width: "100%" }}>
-            Email or Password is Incorrect
+            {errMsg}
           </Alert>
         </Snackbar>
       ) : null}
@@ -91,7 +99,7 @@ const Login = () => {
               <br />
               <Typography>Welcome Back</Typography>
             </center>
-            <form style={{ marginTop: "30px" }}>
+            <form onSubmit={handleSubmit} style={{ marginTop: "30px" }}>
               <Box mb={2}>
                 <TextField
                   label="Email"
@@ -118,7 +126,7 @@ const Login = () => {
                 <Button
                   variant="contained"
                   color="primary"
-                  onClick={handleSubmit}
+                  type="submit"
                 >
                   Sign In
                 </Button>

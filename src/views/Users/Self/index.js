@@ -20,14 +20,14 @@ const Self = () => {
   const userName = getActiveUserName();
 
   const deleteQuestion = async (id) => {
-    const response = await axios.delete(`question_controller/deleteQuestion?Id=${id}`)
+    const response = await axios.delete(`question_controller/deleteQuestion?Id=${id}&uId=${userId}`)
     if(response.status === 202){
         setQuestions(questions.filter((q)=> q.Id !== id))
     }
   }
 
   const deleteAnswer = async (id) => {
-    const response = await axios.delete(`answer_controller/deleteAnswer?Id=${id}`)
+    const response = await axios.delete(`answer_controller/deleteAnswer?Id=${id}&uId=${userId}`)
     if(response.status === 202){
         setAnswers(answers.filter((a)=> a.Id !== id))
     }

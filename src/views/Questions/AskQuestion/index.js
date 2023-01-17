@@ -59,7 +59,7 @@ const AskQuestion = () => {
       formData.append("userId", userId)
       formData.append("tags", t.toString())
 
-      const resp = await axios.post('question_controller/addQuestion', formData)
+      const resp = await axios.post(`question_controller/addQuestion?uId=${userId}`, formData)
         if(resp){
           setTitle('')
           setQuestionBody('');
